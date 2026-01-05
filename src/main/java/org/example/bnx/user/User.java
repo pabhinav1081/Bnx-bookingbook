@@ -3,7 +3,7 @@ package org.example.bnx.user;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.bnx.Role.Role;
-import org.jspecify.annotations.Nullable;
+
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -79,7 +79,7 @@ public class User implements UserDetails, Principal {
     }
 
     @Override
-    public @Nullable String getPassword() {
+    public  String getPassword() {
         return password;
     }
 
@@ -107,7 +107,8 @@ public class User implements UserDetails, Principal {
     public boolean isEnabled() {
         return enabled;
     }
-    private String fullname(){
+
+    public String fullname(){
         return firstname + " " + lastname;
     }
 }

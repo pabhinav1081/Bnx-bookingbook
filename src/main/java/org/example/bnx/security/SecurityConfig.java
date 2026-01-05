@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
@@ -25,7 +26,7 @@ public class SecurityConfig {
     private AuthenticationProvider authenticationProvider;
 
     @Bean
-    public SecurityWebFilterChain springSecurityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain springSecurityFilterChain(HttpSecurity http) throws Exception {
 
 
 
@@ -47,9 +48,9 @@ public class SecurityConfig {
                 ).permitAll().anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
 
-
+        return http.build();
     }
 }
