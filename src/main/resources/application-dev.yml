@@ -19,22 +19,16 @@ spring:
     password: ali
     properties:
       mail:
-        smtp:
+        SMTP:
           trust: "*"
         auth: true
-        starttls:
+        STARTTLS:
           enabled: true
-        connectiontimeout: 5000
+        connection timeout: 5000
         timeout: 3000
-        writetimeout: 5000
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: "http://localhost:9090/realms/book-social-network"
+        write timeout: 5000
 application:
-  file:
-    uploads:
-      photos-output-path: ./uploads
-server:
-  port: 8088
+  security:
+    jwt:
+      secret-key: Abhinav
+      expiration: 8640000
